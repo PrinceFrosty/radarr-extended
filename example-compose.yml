@@ -1,0 +1,29 @@
+services:
+  radarr:
+    security_opt: ["no-new-privileges:true"]
+    image: ghcr.io/princefrosty/radarr-extended:latest
+    container_name: radarr
+    restart: unless-stopped
+    environment:
+      PGID: 1000
+      PUID: 1000
+    volumes:
+      - "./config-radarr/config/:/config/"
+      - "./data:/data/"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "curl",
+          "-f",
+          "http://eth0.me",
+          "&&",
+          "curl",
+          "-f",
+          "http://localhost:7878",
+        ]
+      interval: 180s
+      timeout: 10s
+      retries: 3
+    ports:
+      - "7878:7878"
