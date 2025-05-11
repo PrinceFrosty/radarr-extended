@@ -6,14 +6,17 @@ name: Docker
 # documentation.
 
 on:
-  schedule:
-    - cron: '28 23 * * *'
-  push:
-    branches: [ "latest" ]
-    # Publish semver tags as releases.
-    tags: [ 'v*.*.*' ]
-  pull_request:
-    branches: [ "latest" ]
+   push:
+     paths:
+      - 'latest-radarr.txt'
+  # schedule:
+  #   - cron: '28 23 * * *'
+  # push:
+  #   branches: [ "latest" ]
+  #   # Publish semver tags as releases.
+  #   tags: [ 'v*.*.*' ]
+  # pull_request:
+  #   branches: [ "latest" ]
 
 env:
   # Use docker.io for Docker Hub if empty
