@@ -82,7 +82,7 @@ jobs:
       #     github-token: ${{ secrets.GH_PAT }}
       - name: Grab latest radarr version
         id: grab-new-radarr
-        run: echo "new_radarr=$(tr -dc '0-9' <<< $(curl -sL https://api.github.com/repos/linuxserver/docker-radarr/releases/latest | jq -r ".tag_name"))" >> $GITHUB_OUTPUT
+        run: echo "new_radarr=$(tr -dc '0-9' <<< $(curl -sL https://api.github.com/repos/linuxserver/docker-radarr/branches/master | jq -r ".commit.committer.date"))" >> $GITHUB_OUTPUT
       - name: Pick latest radarr version
         id: latest-radarr
         env:
